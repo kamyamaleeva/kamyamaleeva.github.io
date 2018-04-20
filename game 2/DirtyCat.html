@@ -1,0 +1,147 @@
+<!doctype html> 
+<meta charset="utf-8"> 
+<link rel="stylesheet" href="style3.css"> 
+<title>Попробуй помыть кошку!</title>
+<style type="text/css"> 
+</style> 
+<div id="new"> 
+<div id="body"> 
+<div id="stage"> 
+<div id="background"></div> 
+<div id="cannon"></div> 
+<div id="alien"></div> 
+<div id="missile"></div> 
+</div> <h2>Все вы знаете, что кошки ненавидят воду, но Мерселин выглядит просто ужасно и пора бы ей принять ванну!</<h2> 
+<p id="output">Введи X (от 0 до 470) и Y (от 0 до 390), затем кликните по кнопке "Стреляй!"</p> 
+<audio src="каламбур-деревня-дураков.mp3" controls autoplay></audio><br> 
+<input id="inputX" type="text" placeholder="X..." size = "10" autofocus> 
+<input id="inputY" type="text" placeholder="Y..." size = "10" autofocus> 
+<button>Облить водой!</button> 
+</div></div> 
+<script> 
+//Переменные игры 
+var alienX = 50; 
+var alienY = 50; 
+var guessX = 0; 
+var guessY = 0; 
+var shotsRemaining = 8; 
+var shotsMade = 0; 
+var gameState = ""; 
+var gameWon = false; 
+//Объекты игры 
+var cannon = document.querySelector("#cannon"); 
+var alien = document.querySelector("#alien"); 
+var missile = document.querySelector("#missile"); 
+//Отслеживание нажатия клавиши Enter 
+window.addEventListener("keydown", keydownHandler, false); 
+//Поля ввода и вывода 
+var inputX = document.querySelector("#inputX"); 
+var inputY = document.querySelector("#inputY"); 
+var output = document.querySelector("#output"); 
+//Кнопка 
+var button = document.querySelector("button"); 
+button.style.cursor = "pointer"; 
+button.addEventListener("click", clickHandler, false); 
+function render() 
+{ 
+//Позиция пришельца 
+alien.style.left = alienX + "px"; 
+alien.style.top = alienY + "px"; 
+//Позиция орудия 
+cannon.style.left = guessX + "px"; 
+//Позиция ракеты 
+missile.style.left = guessX + "px"; 
+missile.style.top = guessY + "px"; 
+} 
+function keydownHandler(event) 
+{ 
+if(event.keyCode === 13) 
+{ 
+validateInput(); 
+} 
+} 
+function clickHandler() 
+{ 
+validateInput(); 
+} 
+function validateInput() 
+{ 
+guessX = parseInt(inputX.value); 
+guessY = parseInt(inputY.value); 
+if(isNaN(guessX) || isNaN(guessY)) 
+{ 
+output.innerHTML = "Пожалуйста, введи число."; 
+} 
+else if(guessX > 470 || guessX < 0) 
+{ 
+output.innerHTML = "Значение X должно быть от 0 до 470!"; 
+} 
+else if(guessY > 390 || guessY < 0) 
+{ 
+output.innerHTML = "Значение Y должно быть от 0 до 390!"; 
+} 
+else 
+{ 
+playGame(); 
+} 
+} 
+function playGame() 
+{ 
+shotsRemaining -= 1; 
+shotsMade += 1; 
+gameState = "<br>Ведер вылито: " + shotsMade + ". Осталось: " 
++ shotsRemaining + "."; 
+guessX = parseInt(inputX.value); 
+guessY = parseInt(inputY.value); 
+//Анализ: Находятся ли введенные игроком 
+//координаты X и Y внутри области цели 
+if(guessX >= alienX && guessX <= alienX + 50) 
+{ 
+//В горизонтальном направлении X находятся, 
+//теперь проверим вертикальное направление Y 
+if(guessY >= alienY && guessY <= alienY + 50) 
+{ 
+//Совпадение по обоим направлениям, т.е. цель поражена! 
+gameWon = true; 
+endGame(); 
+} 
+} 
+else 
+{ 
+output.innerHTML = "Ты не попал...Попробуй еще раз!" + gameState; 
+//Проверка на конец игры 
+if (shotsRemaining < 1) 
+{ 
+endGame(); 
+} 
+} 
+//Изменение позиции пришельца, если игра еще не выиграна 
+if(!gameWon) 
+{ 
+//Изменение координаты X пришельца 
+alienX = Math.floor(Math.random() * 450); 
+//Добавим 47 к координате Y, чтобы новая позиция 
+//пришельца стала ниже и приблизилась к земле 
+alienY += 40; 
+} 
+//Обновление отображения нового состояния игры 
+render(); console.log("X: " + alienX); 
+console.log("Y: " + alienY); 
+} 
+function endGame() 
+{ 
+if(gameWon) 
+{ 
+output.innerHTML 
+= "Юхууууу! Вы не дали захватить Коле бюджетное место!" + "<br>" 
++ "Израсходовано ракет: " + shotsMade + "."; 
+} 
+else 
+{ 
+output.innerHTML 
+= "Вы проиграли!" + "<br>" + "Коля попал на бюджет("; 
+//Отключение клавиши Enter 
+window.removeEventListener("keydown", keydownHandler, false); 
+} 
+} 
+</script>

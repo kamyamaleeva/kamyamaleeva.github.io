@@ -1,0 +1,93 @@
+body 
+{ 
+background-image: url('heart.jpg'); 
+} 
+button 
+{ 
+font-family: Arial, Helvetica, sans-serif; 
+font-size: 30px; 
+align: center; 
+padding-top: 100px; 
+color: #FFFF00; 
+padding: 10px 15px; 
+border: none; 
+cursor: pointer; 
+-webkit-border-radius: 10px; 
+-moz-border-radius: 10px; 
+border-radius: 15px; 
+background:-webkit-linear-gradient(#1E90FF , #191970, #6A5ACD); 
+background:-moz-linear-gradient(#1E90FF , #191970, #6A5ACD); 
+background: linear-gradient(#1E90FF , #191970, #6A5ACD); 
+-webkit-user-select: none; 
+-moz-user-select: none; 
+user-select: none; 
+} 
+button:hover 
+{ 
+background: -webkit-linear-gradient( #FA8072, #DC143C, #F08080); 
+background: -moz-linear-gradient( #FA8072, #DC143C, #F08080); 
+background: linear-gradient( #FA8072, #DC143C, #F08080); 
+} 
+button:active 
+{ 
+background: -webkit-linear-gradient(top, #FF6347, #9932CC); 
+background: -moz-linear-gradient(top, #FF6347, #9932CC); 
+background: linear-gradient(top, #FF6347, #9932CC); 
+} 
+#output 
+{ 
+font-family: Arial, Helvetica, sans-serif; 
+align: center; 
+font-size: 30px; 
+color: #800000; 
+padding-top: 100px; 
+} 
+/*Свойства прямоугольника, содержащего шкалу и стрелку*/ 
+#stage 
+{ 
+width: 900px; 
+height: 90px; 
+position: relative; 
+} 
+/*Свойства шкалы*/ 
+#scale 
+{ 
+width: 900px; 
+height: 90px; 
+position: absolute; 
+top: 100px; 
+left: 0px; 
+background-image: url('scale.png'); 
+} 
+/*Свойства стрелки*/ 
+#arrow 
+{ 
+width: 5px; 
+height: 75px; 
+position: absolute; 
+top: 50px;
+left: 0px; 
+background-image: url('arrow.png'); 
+} 
+#new 
+{ 
+width: 900px; 
+height: 90px; 
+position: center; 
+margin: auto; 
+top: 0px; 
+left: 0px; 
+} 
+#input 
+{ 
+font-family: Arial, Helvetica, sans-serif; 
+align: center; 
+font-size: 30px; 
+color: #191970; 
+} 
+
+/*Transition*/ 
+-webkit-transition: left 0.5s ease-out 0s; 
+-moz-transition: left 0.5s ease-out 0s; 
+transition: left 0.5s ease-out 0s; 
+}

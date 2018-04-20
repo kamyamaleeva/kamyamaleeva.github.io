@@ -1,0 +1,129 @@
+<!doctype html> 
+<meta charset="utf-8"> 
+<link rel="stylesheet" href="style.css"> 
+<title>Игра "Сколько лайков?"</title> 
+<style type="text/css"> 
+</style> 
+<div id='new'> 
+<div id='body'> 
+<div id="stage"> 
+<div id="scale"></div> 
+<div id="arrow"></div> 
+</div> 
+<p id="output">Катя выложила в Инстаграм новую фотографию!<br>Попробуй отгадать сколько лайков она получит... 
+<br>Введи свой вариант ответа от 0 до 99</p> 
+<input id="input" type="text" 
+placeholder="Твой вариант ответа...." autofocus> 
+<div id='b'> 
+<button>Лайк!</button> 
+</div></div> 
+<script type="text/javascript"> 
+//Инициализация переменных игры 
+var mysteryNumber = Math.floor(Math.random() * 100); 
+var playersGuess = 0; 
+var guessesRemaining = 10; 
+var guessesMade = 0; 
+var gameState = ""; 
+var gameWon = false; 
+var message = "Пожалуйста, введи число от 0 до 99." 
+//Отслеживание нажатия клавиши Enter 
+window.addEventListener("keydown", keydownHandler, false); 
+//Ссылки на поля ввода и вывода 
+var input = document.querySelector("#input"); 
+var output = document.querySelector("#output"); 
+//Ссылка на кнопку 
+var button = document.querySelector("button"); 
+button.addEventListener("click", clickHandler, false); 
+//Ссылка на стрелку 
+var arrow = document.querySelector("#arrow"); 
+function keydownHandler(event) 
+{ 
+if(event.keyCode === 13) 
+{ 
+validateInput(); 
+} 
+} 
+function clickHandler() 
+{ 
+validateInput(); 
+} 
+function validateInput() 
+{ 
+playersGuess = parseInt(input.value); 
+input.value = "" 
+if(isNaN(playersGuess)) 
+{ 
+output.innerHTML = message; 
+} 
+else if(playersGuess < 0 || playersGuess > 99) 
+{ 
+output.innerHTML = message; 
+} 
+else 
+{ 
+playGame(); 
+} 
+} 
+function playGame() 
+{ 
+guessesRemaining -= 1; 
+guessesMade += 1; 
+gameState = " Ты потратил попыток: " + guessesMade + 
+". Но у тебя еще осталось немного: " + guessesRemaining + "."; 
+if(playersGuess > mysteryNumber) 
+{ 
+output.innerHTML = "У нее не так много подписчиков! Кажется, ты немного переоценил..." + gameState; 
+//Проверка на конец игры 
+if (guessesRemaining < 1) 
+{ 
+endGame(); 
+} 
+} 
+else if(playersGuess < mysteryNumber) 
+{ 
+output.innerHTML = "Для нее это слишком мало...Попробуй больше!" + gameState; 
+//Проверка на конец игры 
+if (guessesRemaining < 1) 
+{ 
+endGame(); 
+} 
+} 
+else 
+{ 
+gameWon = true; 
+endGame(); 
+} 
+//Обновление отображения в окне браузера 
+render(); 
+} 
+function endGame() 
+{ 
+if (gameWon) 
+{ 
+output.innerHTML 
+= "Да, столько: " + mysteryNumber + "!" + "<br>" 
++ "Количество попыток: " + guessesMade + "."; 
+} 
+else 
+{ 
+output.innerHTML 
+= "Увы, попыток больше нет(" + "<br>" 
++ "Лайков, поставленных Кате: " + mysteryNumber + "."; 
+} 
+//Отключение кнопки 
+button.removeEventListener("click", clickHandler, false); 
+button.disabled = true; 
+//Отключение клавиши Enter 
+window.removeEventListener("keydown", keydownHandler, false); 
+//Отключение поля ввода 
+input.placeholder = "Конец игры!"; 
+input.disabled = true; 
+} 
+function render() 
+{ 
+//Позиционирование стрелки на шкале 
+//Увеличение введенного числа в 3 раза, 
+//для перевода его в пиксели на шкале 
+arrow.style.left = playersGuess * 8.8 + "px"; 
+} 
+</script>

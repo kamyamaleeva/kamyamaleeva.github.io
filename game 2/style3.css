@@ -1,0 +1,117 @@
+body 
+{ 
+background-image: url("background.png"); 
+} 
+h2
+{
+	font-family: Arial, Helvetica, sans-serif; 
+	font-size: 25px;
+	padding-top: 5px;
+	text-align:center
+}
+button 
+{ 
+font-family: Arial, Helvetica, sans-serif; 
+font-size: 30px; 
+align: center; 
+padding-top: 100px; 
+color: #FFFF00; 
+padding: 10px 15px; 
+border: none; 
+cursor: pointer; 
+-webkit-border-radius: 10px; 
+-moz-border-radius: 10px; 
+border-radius: 15px; 
+background:-webkit-linear-gradient(#1E90FF , #191970, #6A5ACD); 
+background:-moz-linear-gradient(#1E90FF , #191970, #6A5ACD); 
+background: linear-gradient(#1E90FF , #191970, #6A5ACD); 
+-webkit-user-select: none; 
+-moz-user-select: none; 
+user-select: none; 
+} 
+button:hover 
+{ 
+background: -webkit-linear-gradient( #FA8072, #DC143C, #F08080); 
+background: -moz-linear-gradient( #FA8072, #DC143C, #F08080); 
+background: linear-gradient( #FA8072, #DC143C, #F08080); 
+} 
+button:active 
+{ 
+background: -webkit-linear-gradient(top, #FF6347, #9932CC); 
+background: -moz-linear-gradient(top, #FF6347, #9932CC); 
+background: linear-gradient(top, #FF6347, #9932CC); 
+} 
+#output 
+{ 
+font-family: Arial, Helvetica, sans-serif; 
+align: center; 
+font-size: 25px; 
+font-weight: 600; 
+color: #191970; 
+padding-top: 10px; 
+} 
+#input 
+{ 
+font-family: Arial, Helvetica, sans-serif; 
+align: center; 
+font-size: 25px; 
+font-weight: 600; 
+color: #191970; 
+} 
+#stage 
+{ 
+width: 500px; 
+height: 500px; 
+position: relative; 
+} 
+#background 
+{ 
+width: 500px; 
+height: 500px; 
+position: absolute; 
+top: 0px; 
+left: 0px; 
+background-image: url("background.jpg"); 
+} 
+#new 
+{ 
+width: 500px; 
+height: 500px; 
+position: center; 
+margin: auto; 
+top: 0px; 
+left: 0px; 
+} 
+#cannon 
+{ 
+width: 85px; 
+height: 85px; 
+position: absolute; 
+top: 405px; 
+left: 225px; 
+background-image: url("cannon.png"); 
+} 
+#alien 
+{ 
+width: 85px; 
+height: 85px; 
+position: absolute; 
+top: 50px; 
+left: 50px; 
+background-image: url("alien.png"); 
+} 
+#missile 
+{ 
+width: 45px; 
+height: 45px; 
+position: absolute; 
+top: 370px; 
+left: 235px; 
+background-image: url("missile.png"); 
+} 
+
+/*Transition*/ 
+-webkit-transition: left 0.5s ease-out 0s; 
+-moz-transition: left 0.5s ease-out 0s; 
+transition: left 0.5s ease-out 0s; 
+}
